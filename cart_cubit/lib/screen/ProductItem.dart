@@ -5,7 +5,7 @@ class ProductItem {
   final Color color;
   final String name;
   final double price;
-
+bool isAdded =false;
   ProductItem(
       {required this.id,
       required this.color,

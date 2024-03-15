@@ -7,6 +7,7 @@ part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
+
    final List<ProductItem> productList = [
     ProductItem(id: 1, color: Color(0xFF4285F4), name: 'Product A', price: 19.99),
     ProductItem(id: 2, color: Color(0xFF34A853), name: 'Product B', price: 29.99),
@@ -30,11 +31,33 @@ class CartCubit extends Cubit<CartState> {
     ProductItem(id: 20, color: Color(0xFFEA4335), name: 'Product T', price: 36.99),
   ];
    final List<ProductItem> listOfItem = [];
+
+
    void addToCart (ProductItem item){
+
+    if (listOfItem.contains(item))return;
+    item.isAdded=true;
      listOfItem.add(item);
+
+
+
 if (listOfItem.contains(item)){
  emit(ProductIsAdded(name: item.name));
-}
-   }
 
+
+ Future.delayed(Duration(seconds: 1),(){
+  item.isAdded = false;
+  emit(ProductIsAdded(name: item.name));
+
+ });
+}
+
+   }
+  void removeFromCart (ProductItem item){
+
+   if (listOfItem.contains(item)) {
+    listOfItem.remove(item);
+    emit(ProductIsAdded(name: item.name));
+   }
+   }
 }

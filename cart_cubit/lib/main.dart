@@ -1,5 +1,5 @@
 import 'package:cart_cubit/Bloc/cart_cubit.dart';
-import 'package:cart_cubit/screen/HomeSceen.dart';
+import 'package:cart_cubit/screen/SpleshScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.cyan
         ),
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        home: SpleshScreen(),
       ),
     );
   }
