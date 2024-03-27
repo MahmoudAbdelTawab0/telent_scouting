@@ -12,7 +12,7 @@ class Pages extends StatefulWidget {
 }
 
 class _PagesState extends State<Pages> {
-  int selectedPage = 0;
+  int selectedPage = 1;
   List<Widget> pages = [
 
 
@@ -26,6 +26,8 @@ class _PagesState extends State<Pages> {
     return Scaffold(
       appBar: AppBar(),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF233B55),
+
         currentIndex: selectedPage,
         onTap: (index) {
           setState(() {
@@ -34,7 +36,6 @@ class _PagesState extends State<Pages> {
         },
         selectedItemColor: Colors.white,
         unselectedItemColor: Color(0xFFBDCAD6),
-        backgroundColor: Color(0xFF233B55),
         items: [
           BottomNavigationBarItem(icon: Image.asset("asstes/images/Group (1).png"),label: "Home"),
           BottomNavigationBarItem(icon:Image.asset("asstes/images/home-category 1.png"),label: "Category"),
