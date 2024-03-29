@@ -12,7 +12,7 @@ class Pages extends StatefulWidget {
 }
 
 class _PagesState extends State<Pages> {
-  int selectedPage = 1;
+  int selectedPage = 0;
   List<Widget> pages = [
 
 
