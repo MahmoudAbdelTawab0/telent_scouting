@@ -19,8 +19,8 @@ class CounterScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Center(
-
-            child:
+          child: Row(
+            children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -96,30 +96,12 @@ class CounterScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                       )),
-                  SizedBox(height: 15,),
-
-                  ElevatedButton(onPressed: () {
-                    context.read<CounterCubit>().Zero();
-                  },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          fixedSize: Size(
-                              MediaQuery.of(context).size.width, // width
-                              57 // height
-                          )),
-                      child: Text("RESET",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      )),
 
                 ],
               ),
-
+            ],
           ),
-
+        ),
       ),
 
     );

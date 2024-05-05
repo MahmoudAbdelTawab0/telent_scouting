@@ -9,22 +9,18 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
-        title: Text("profile"),
-        actions: [Container(
-      decoration: BoxDecoration(
-      color: Colors.grey,
-        border: Border.all(color: Colors.black,width: 1),
-        borderRadius: BorderRadius.all(Radius.circular(10)),),
-          child: TextButton(
+        //backgroundColor: Colors.blueGrey,
+        title: Text("My Account"),
+        actions: [
+           TextButton(
               onPressed: () async {
             await FirebaseAuth.instance.signOut();
             Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => Login()), (route) => false);
           },
               child: Text("SinOut")),
-        )
+
         ],
       ),
       body: Center(
@@ -32,32 +28,29 @@ class Profile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
-                   CircleAvatar(
-                       radius: 60,
-                   backgroundImage:NetworkImage(FirebaseAuth.instance.currentUser?.photoURL?? "")),
-
-
-        SizedBox(height: 40,),
+            CircleAvatar(
+                radius: 60,
+                backgroundImage:NetworkImage(FirebaseAuth.instance.currentUser?.photoURL?? "")),
+            SizedBox(height: 5,),
             Container(
               decoration: BoxDecoration(
-                color: Colors.grey,
+                color: Colors.blueAccent,
                 borderRadius: BorderRadius.only(topRight:Radius.circular(30),bottomLeft: Radius.circular(30)),
 
               ),
-              height: 350,
-              width:350 ,
+              height: MediaQuery.of(context).size.height*0.5,
+              width:MediaQuery.of(context).size.width*0.9,
               margin: EdgeInsets.only(left: 10,top: 20),
               padding: EdgeInsets.all(30),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                      Text(FirebaseAuth.instance.currentUser?.displayName ?? "",
-                      style: TextStyle(
+                  Text(FirebaseAuth.instance.currentUser?.displayName ?? "",
+                    style: TextStyle(
                         fontSize: 30
-                      ),
-                      ),
+                    ),
+                  ),
                   Text(FirebaseAuth.instance.currentUser?.email ?? "",
                     style: TextStyle(
                         fontSize: 20
@@ -67,16 +60,15 @@ class Profile extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 20
                     ),),
-                      Text(FirebaseAuth.instance.currentUser?.uid?? "",
-                        style: TextStyle(
-                            fontSize: 20
-                        ),
-                      )
+                  Text(FirebaseAuth.instance.currentUser?.uid?? "",
+                    style: TextStyle(
+                        fontSize: 20
+                    ),
+                  )
 
                 ],
               ),
             )
-
 
               ],
             ),

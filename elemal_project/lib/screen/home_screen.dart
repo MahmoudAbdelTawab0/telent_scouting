@@ -1,9 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:elemal_project/cubits/categories_cubit.dart';
-import 'package:elemal_project/screen/category_screen.dart';
+
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

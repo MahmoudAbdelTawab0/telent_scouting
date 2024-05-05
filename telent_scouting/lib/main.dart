@@ -3,7 +3,9 @@ import 'package:telent_scouting/Screens/HomeScreen.dart';
 import 'package:telent_scouting/Screens/LoginScreen.dart';
 import 'package:telent_scouting/Screens/Pages.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:telent_scouting/Screens/Profile.dart';
 import 'package:telent_scouting/Screens/SplashScreen.dart';
+import 'package:telent_scouting/Screens/wecome.dart';
 import 'firebase_options.dart';
 
 void main()async {
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
         ),
-        home: SplashScreen(),
+        home: WecomeScreen(),
     );
   }
   }

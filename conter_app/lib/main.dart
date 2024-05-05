@@ -19,9 +19,7 @@ class MyApp extends StatelessWidget {
   builder: (context, state) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: context.read<CounterCubit>().color,
-        ),
+
         home: CounterScreen(),
       );
   },
