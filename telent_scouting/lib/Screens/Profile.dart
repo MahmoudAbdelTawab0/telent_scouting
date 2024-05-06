@@ -1,6 +1,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:telent_scouting/Screens/LoginScreen.dart';
 
 class Profile extends StatelessWidget {
@@ -11,7 +12,11 @@ class Profile extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        //backgroundColor: Colors.blueGrey,
+          elevation: 0,
+          backgroundColor: Colors.white,
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.black,
+          ),
         title: Text("My Account"),
         actions: [
            TextButton(

@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          useMaterial3: true,
+          useMaterial3:false,
         ),
-        home: WecomeScreen(),
+        home: SplashScreen(),
     );
   }
   }

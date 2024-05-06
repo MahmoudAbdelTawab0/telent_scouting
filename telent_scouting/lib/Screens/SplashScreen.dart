@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:telent_scouting/Screens/HomeScreen.dart';
 import 'package:telent_scouting/Screens/LoginScreen.dart';
 import 'package:telent_scouting/Screens/Pages.dart';
+import 'package:telent_scouting/Screens/wecome.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,14 +20,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3),() {
-      if (FirebaseAuth.instance.currentUser == null){
-        Navigator.of(context as BuildContext).pushReplacement(MaterialPageRoute(
-            builder:(context) => Login())
-        );
-      }else{
-        Navigator.of(context as BuildContext).pushReplacement(MaterialPageRoute(
-            builder:(context) => Pages()));
-      }
+      Navigator.of(context as BuildContext).pushReplacement(MaterialPageRoute(
+            builder:(context) => WecomeScreen()));
+
     }) ;
   }
   @override
@@ -34,11 +30,20 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       body: Center(
-        child: Image.asset("assets/images/img_1.png",
-        width: 100,
-          height: 100,
+        child: Container(
+          height: 60,
+          width: 60,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+              image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage("assets/images/img_6.png"))
+          ),
+
         ),
-      ),
+
+        ),
+
     );
   }
 }
