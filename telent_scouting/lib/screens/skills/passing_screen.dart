@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-class DrubblingScreen extends StatelessWidget {
-
+class PassingScreen extends StatelessWidget {
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Drubbling",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 30),),
+        title: const Text("Passing",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 30),),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("Drubbling"),
-            SizedBox(height: 20,),
+            Image.asset("assets/images/img_0.png",height: 300,fit: BoxFit.fill,),
+            const SizedBox(height: 20,),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -22,7 +22,7 @@ class DrubblingScreen extends StatelessWidget {
                       MediaQuery.of(context).size.width, // width
                       57 // height
                   )),
-              child: const Text('Uploed Vedio'),
+              child: const Text('Upload Vedio'),
             ), //
           ],
         ),

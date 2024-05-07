@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-class EgltyScreen extends StatelessWidget {
+class DribblingScreen extends StatelessWidget {
+  const DribblingScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Eglty",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 30),),
+        title: const Text("Dribbling",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 30),),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text("Eglty"),
-            SizedBox(height: 20,),
+            const Text("Dribbling"),
+            const SizedBox(height: 20,),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -22,7 +24,7 @@ class EgltyScreen extends StatelessWidget {
                       MediaQuery.of(context).size.width, // width
                       57 // height
                   )),
-              child: const Text('Uploed Vedio'),
+              child: const Text('Upload Video'),
             ), //
           ],
         ),

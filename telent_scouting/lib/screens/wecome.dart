@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:telent_scouting/Screens/HomeScreen.dart';
-import 'package:telent_scouting/Screens/Pages.dart';
+import 'package:telent_scouting/Screens/pages.dart';
 
 class WecomeScreen extends StatelessWidget {
   const WecomeScreen ({super.key});
@@ -8,6 +7,7 @@ class WecomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -23,13 +23,13 @@ class WecomeScreen extends StatelessWidget {
                   color: Color(0xff223263),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Container(
                 height: 400,
           width: 340,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(8)),
             image: DecorationImage(
                 fit: BoxFit.fill,
@@ -37,25 +37,25 @@ class WecomeScreen extends StatelessWidget {
           ),
 
               ),
-              SizedBox(height: 50,),
+              const SizedBox(height: 50,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Pages()),);
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const Pages()),);
 
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xff223263),
-                          fixedSize: Size(
+                          fixedSize: const Size(
                               200, // width
                               57 // height
                           )),
                       child: const Text('Next',style: TextStyle(color: Colors.white),),
                     ),
-                    SizedBox(width: 20,),
-                    Text("--->",
+                    const SizedBox(width: 20,),
+                    const Text("--->",
                     style: TextStyle(fontWeight: FontWeight.w900,fontSize: 25),
                     )//
                   ],

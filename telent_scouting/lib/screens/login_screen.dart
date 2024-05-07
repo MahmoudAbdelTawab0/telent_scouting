@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:telent_scouting/Screens/HomeScreen.dart';
+import 'package:telent_scouting/Screens/home_screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:telent_scouting/Screens/Pages.dart';
+import 'package:telent_scouting/Screens/pages.dart';
 
 
 class Login extends StatelessWidget {
@@ -13,14 +13,14 @@ class Login extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          margin: EdgeInsets.only(left: 16, right: 16),
+          margin: const EdgeInsets.only(left: 16, right: 16),
 
             child: ListView(
               children: [
                 const SizedBox(
                   height: 40,
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   //crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -82,7 +82,7 @@ class Login extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) {
-                          return Pages();
+                          return const Pages();
                         }));
                   },
                   style: ElevatedButton.styleFrom(
@@ -98,7 +98,7 @@ class Login extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                       child: Divider(
                         height: 1,
                         thickness: 1,
@@ -106,7 +106,7 @@ class Login extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 28, right: 23),
+                      margin: const EdgeInsets.only(left: 28, right: 23),
                       child: const Text(
                         'OR',
                         style: TextStyle(
@@ -115,7 +115,7 @@ class Login extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Divider(
                         height: 1,
                         thickness: 1,
@@ -131,12 +131,12 @@ class Login extends StatelessWidget {
                   onPressed: () async{
                    final userCredential = await signInWithGoogle();
                   if(userCredential.user != null){
-                    Navigator.of(context as BuildContext).pushReplacement(MaterialPageRoute(
-                        builder:(context) => Pages()));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder:(context) => const Pages()));
                   }
                    },
                   icon: Image.asset('assets/images/Google.png'),
-                  label: Text(
+                  label: const Text(
                     'Login with google',
                     style: TextStyle(
                       color: Color(0xFF9098B1),
@@ -146,7 +146,7 @@ class Login extends StatelessWidget {
                     ),
                   ),
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(
+                    side: const BorderSide(
                       color: Color(0xFFEBF0FF),
                     ),
                     fixedSize: Size(
@@ -160,8 +160,8 @@ class Login extends StatelessWidget {
                 ),
                 OutlinedButton.icon(
                   onPressed: () {},
-                  icon: Icon(Icons.facebook_outlined),
-                  label: Text(
+                  icon: const Icon(Icons.facebook_outlined),
+                  label: const Text(
                     'Login with google',
                     style: TextStyle(
                       color: Color(0xFF9098B1),
@@ -171,7 +171,7 @@ class Login extends StatelessWidget {
                     ),
                   ),
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(
+                    side: const BorderSide(
                       color: Color(0xFFEBF0FF),
                     ),
                     fixedSize: Size(
@@ -185,7 +185,7 @@ class Login extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     'Forgot Password?',
                     style: TextStyle(
                       fontSize: 12,
@@ -201,7 +201,7 @@ class Login extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Don’t have a account?',
                       style: TextStyle(
                         color: Color(0xFF9098B1),
@@ -210,19 +210,6 @@ class Login extends StatelessWidget {
                         letterSpacing: 0.5,
                       ),
                     ),
-                    // TextButton(
-                    //     onPressed: (){},
-                    //     child: Text(
-                    //       'Register',
-                    //       style: TextStyle(
-                    //         color: Color(0xFF40BFFF),
-                    //         fontWeight: FontWeight.w700,
-                    //         fontSize: 12,
-                    //         letterSpacing: 0.5,
-                    //       ),
-                    //     )
-                    // )
-                    //GestureDetector(),
                     InkWell(
                       onTap: () {
                         Navigator.of(context).pushReplacement(
@@ -230,7 +217,7 @@ class Login extends StatelessWidget {
                               return HomeScreen();
                             }));
                       },
-                      child: Text(
+                      child: const Text(
                         'Register',
                         style: TextStyle(
                           color: Color(0xFF40BFFF),

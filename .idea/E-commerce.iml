@@ -15,8 +15,18 @@
       <excludeFolder url="file://$MODULE_DIR$/news_api_cubit/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/news_api_cubit/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/news_api_cubit/build" />
+      <excludeFolder url="file://$MODULE_DIR$/elemal_project/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/elemal_project/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/elemal_project/build" />
+      <excludeFolder url="file://$MODULE_DIR$/screens/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/screens/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/screens/build" />
+      <excludeFolder url="file://$MODULE_DIR$/telent_scouting/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/telent_scouting/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/telent_scouting/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Dart SDK" level="project" />
   </component>
 </module>

@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
-class PassingScreen extends StatelessWidget {
- 
+
+class EgltyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Passing",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 30),),
+        title: const Text(
+          "Eglty",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),
+        ),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("PASSING"),
-            SizedBox(height: 20,),
+            const Text("Eglty"),
+            const SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -21,7 +26,7 @@ class PassingScreen extends StatelessWidget {
                   fixedSize: Size(
                       MediaQuery.of(context).size.width, // width
                       57 // height
-                  )),
+                      )),
               child: const Text('Uploed Vedio'),
             ), //
           ],
