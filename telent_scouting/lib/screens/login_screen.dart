@@ -34,7 +34,7 @@ class Login extends StatelessWidget {
                   height: 20,
                 ),
                 const Text(
-                  'Welcome to Telent Scouting',
+                  'Welcome to Talent Scouting',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,

@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 class JugglingScreen extends StatelessWidget {
+  const JugglingScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Juggling",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 30),),
+        title: const Text("Juggling",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 30),),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text("Juggling"),
-            SizedBox(height: 20,),
+            const Text("Juggling"),
+            const SizedBox(height: 20,),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(

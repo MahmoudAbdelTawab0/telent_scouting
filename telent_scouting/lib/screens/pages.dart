@@ -10,11 +10,11 @@ class Pages extends StatefulWidget {
 
 class _PagesState extends State<Pages> {
   int selectedPage = 1;
-  List<Widget> pages = [
+  List<Widget> pages = const [
 
-    const Text("data2"),
+    Text("data2"),
     HomeScreen(),
-    const Profile()
+    Profile()
   ];
   @override
   Widget build(BuildContext context) {

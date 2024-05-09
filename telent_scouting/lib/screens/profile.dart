@@ -17,11 +17,15 @@ class Profile extends StatelessWidget {
           children: [
             CircleAvatar(
                 radius: 60,
-                backgroundImage:NetworkImage(FirebaseAuth.instance.currentUser?.photoURL?? "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png")),
+                backgroundImage:NetworkImage(
+                    FirebaseAuth.instance.currentUser?.photoURL
+                        ?? "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png",
+                ),
+            ),
             const SizedBox(height: 5,),
             Container(
               decoration: const BoxDecoration(
-                color: Colors.blueAccent,
+                color: Colors.lightGreen,
                 borderRadius: BorderRadius.only(topRight:Radius.circular(30),bottomLeft: Radius.circular(30)),
 
               ),
@@ -37,27 +41,28 @@ class Profile extends StatelessWidget {
                     FirebaseAuth.instance.currentUser?.displayName ?? "Anonymous User",
                     textDirection: TextDirection.ltr,
                     style: const TextStyle(
-                        fontSize: 30
+                      fontSize: 25,
+                      fontFamily: "poppins",
+                      color: Colors.white
                     ),
                   ),
-                  Text(FirebaseAuth.instance.currentUser?.uid?? "User ID: ...",
+
+                  Text(
+                    "Email: \n  ${FirebaseAuth.instance.currentUser?.email}" ?? "Email: ...",
                     textDirection: TextDirection.ltr,
                     style: const TextStyle(
-                        fontSize: 20
+                        fontSize: 18,
+                      fontFamily: "Poppins",
+                      color: Colors.white
                     ),
                   ),
                   Text(
-                    FirebaseAuth.instance.currentUser?.email ?? "Email: ...",
+                    FirebaseAuth.instance.currentUser?.phoneNumber?? "Phone Number: ...",
                     textDirection: TextDirection.ltr,
                     style: const TextStyle(
-                        fontSize: 20
-                    ),
-                  ),
-                  Text(
-                    FirebaseAuth.instance.currentUser?.phoneNumber ?? "Phone Number: ...",
-                    textDirection: TextDirection.ltr,
-                    style: const TextStyle(
-                        fontSize: 20
+                        fontSize: 18,
+                      fontFamily: "Poppins",
+                      color: Colors.white
                     ),)
 
                 ],

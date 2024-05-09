@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:telent_scouting/Screens/wecome.dart';
+import 'package:telent_scouting/Screens/pages.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,15 +11,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
-  // void initState() {
-  //   super.initState();
-  //   Future.delayed(const Duration(seconds: 3), () {
-  //     Navigator.of(context).pushReplacement(
-  //         MaterialPageRoute(builder: (context) => const WecomeScreen()));
-  //   });
-  // }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
       backgroundColor: Colors.white,
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
@@ -59,22 +51,20 @@ class _SplashScreenState extends State<SplashScreen> {
                 totalRepeatCount: 1,
                 onFinished: () {
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const WecomeScreen()));
+                      MaterialPageRoute(builder: (context) => const Pages()));
                 },
                 animatedTexts: [
                   TypewriterAnimatedText(
                       'Welcome to Talent Scouting',
                     textStyle: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: "poppins"
                     ),
                     curve: Curves.fastOutSlowIn,
-                    speed: const Duration(milliseconds: 100)
+                    speed: const Duration(milliseconds: 200)
                   ),
                 ],
-                onTap: () {
-                  print("Tap Event");
-                },
               ),
             ),
           ],
