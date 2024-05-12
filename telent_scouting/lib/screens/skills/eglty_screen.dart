@@ -101,7 +101,7 @@ class _EgltyScreenState extends State<EgltyScreen> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Login(),
+                          builder: (context) => Login(),
                         ),
                       ),);
 

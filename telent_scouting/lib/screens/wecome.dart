@@ -54,10 +54,7 @@ class WecomeScreen extends StatelessWidget {
                           )),
                       child: const Text('Next',style: TextStyle(color: Colors.white),),
                     ),
-                    const SizedBox(width: 20,),
-                    const Text("--->",
-                    style: TextStyle(fontWeight: FontWeight.w900,fontSize: 25),
-                    )//
+
                   ],
                 ),
 

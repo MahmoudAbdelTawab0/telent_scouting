@@ -15,61 +15,47 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.dark,
-          statusBarColor: Colors.white,
-          systemNavigationBarColor: Colors.white,
-        ),
-      ),
-      backgroundColor: Colors.white,
-      body: SizedBox(
+
+      body: Container(
         height: MediaQuery.of(context).size.height,
-        child: Column(
-          children: [
-            Center(
-              child: Container(
-                height: 60,
-                width: 60,
-                margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.3),
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                    image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage("assets/images/img_6.png"))),
-              ),
-            ),
-            const SizedBox(height: 100,),
-            SizedBox(
-              width: 250.0,
-              height: 200,
-              child: AnimatedTextKit(
-                isRepeatingAnimation: true,
-                repeatForever: false,
-                totalRepeatCount: 1,
-                onFinished: () {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const Pages()));
-                },
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                      'Welcome to Talent Scouting',
-                    textStyle: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: "poppins"
-                    ),
-                    curve: Curves.fastOutSlowIn,
-                    speed: const Duration(milliseconds: 200)
-                  ),
-                ],
-              ),
-            ),
-          ],
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.fill,
+              image: AssetImage("assets/images/img_9.png"))
         ),
-      ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+              SizedBox(
+                width: 250.0,
+                height: 200,
+                child: AnimatedTextKit(
+                  isRepeatingAnimation: true,
+                  repeatForever: false,
+                  totalRepeatCount: 1,
+                  onFinished: () {
+                      Navigator.of(context).pushReplacement(
+                       MaterialPageRoute(builder: (context) => const Pages()));
+                  },
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                        'Welcome to Talent Scouting',
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: "poppins"
+                      ),
+                      curve: Curves.fastOutSlowIn,
+                      speed: const Duration(milliseconds: 200)
+                    ),
+                  ],
+                ),
+              ),
+          ]
+    )
+      )
     );
   }
 }
