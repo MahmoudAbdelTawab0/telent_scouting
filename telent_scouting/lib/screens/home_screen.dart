@@ -33,6 +33,26 @@ class _HomeScreenState extends State<HomeScreen> {
     JugglingScreen(),
     EgltyScreen(),
   ];
+  final _auth = FirebaseAuth.instance;
+  late User siginUser ;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUser();
+  }
+  void getUser (){
+    try{
+      final user = _auth.currentUser;
+      if (user != null){
+        siginUser = user;
+      }
+
+    }catch (e){
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
