@@ -1,13 +1,26 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flick_video_player/flick_video_player.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+//import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:telent_scouting/bloc_skills/skills_cubit.dart';
+//import 'package:telent_scouting/bloc_skills/skills_cubit.dart';
+import 'package:telent_scouting/models/skills_model.dart';
+import 'package:telent_scouting/repo/skill_repo.dart';
 import 'package:telent_scouting/screens/login_screen.dart';
 import 'package:video_player/video_player.dart';
 
+
 class PassingScreen extends StatefulWidget {
-  const PassingScreen({super.key});
+  final String skillName;
+  const PassingScreen({super.key, required this.skillName});
 
   @override
   State<PassingScreen> createState() => _PassingScreenState();
@@ -16,9 +29,8 @@ class PassingScreen extends StatefulWidget {
 class _PassingScreenState extends State<PassingScreen> {
   File? _video;
   bool pause = false;
-
+  late FlickManager flickManager;
   late VideoPlayerController _videoPlayerController;
-
   final picker = ImagePicker();
 
   _pickVideo() async {
@@ -35,18 +47,29 @@ class _PassingScreenState extends State<PassingScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    flickManager = FlickManager(
+      videoPlayerController: VideoPlayerController.networkUrl(
+          Uri.parse("https://footballscout.pythonanywhere.com/media/videos/Pass_AB4JMEH.mp4")
+      )
+    );
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Passing",
-          style: TextStyle(
+        title: Text(
+          widget.skillName,
+          style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w400,
               fontSize: 30,
-              fontFamily: "Poppins"),
+              fontFamily: "Kanit"),
         ),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: Colors.green.shade400,
         leading: GestureDetector(
           onTap: () => Navigator.of(context).pop(),
           child: const Icon(
@@ -56,65 +79,93 @@ class _PassingScreenState extends State<PassingScreen> {
           ),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
+      body: Container(
+        margin: const EdgeInsets.all(8),
+        height: MediaQuery.of(context).size.height ,
+        width: MediaQuery.of(context).size.width,
+        child: ListView(
           children: [
-            _video != null
-                ? _videoPlayerController.value.isInitialized
-                    ? AspectRatio(
-                        aspectRatio: 1.2,
-                        child: SizedBox(
-                          height: 300,
-                          width: 400,
-                          child: VideoPlayer(_videoPlayerController),
-                        ),
-                      )
-                    : Container()
-                : Image.asset(
-                    "assets/images/img_0.png",
-                    height: 300,
-                    fit: BoxFit.fill,
-                  ),
+
+        Column(
+        children: [
+        Container(
+
+        child: FlickVideoPlayer(flickManager: flickManager)
+      ),
+      SizedBox(height: 20,),
+      Text(
+        "Passing",
+        style: const TextStyle(
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Text(
+          "the key techniques for passing a football accurately include proper body positioning, using the inside of the foot for short passes and instep for longer passes, keeping your eyes on the target, and following through with the pass",
+          style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF78787c),
+              fontSize: 16),
+          maxLines: 7,
+          textAlign: TextAlign.left,
+        ),
+      ),
+      ],
+    ),
+
+
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.1,
+              child: Image.asset(
+                "assets/images/img_4-removebg-preview.png",
+                fit: BoxFit.fill,
+              ),
+            ),
+            SizedBox(height: 60,),
             ElevatedButton(
               onPressed: () {
                 if (FirebaseAuth.instance.currentUser == null) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
+                     SnackBar(
                       content: Text(
                         "Please login first and try again",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "Poppins"
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: "Poppins"),
                       ),
-                    ),
-                      backgroundColor: Colors.lightGreen,
+                      backgroundColor: Colors.green.shade400,
                     ),
                   );
-                  Future.delayed(const Duration(seconds: 1),() =>
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>  Login(),
-                        ),
-                      ),);
-
+                  Future.delayed(
+                    const Duration(seconds: 1),
+                        () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    ),
+                  );
                 } else {
                   _pickVideo();
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightGreen,
+                backgroundColor: Colors.green.shade400,
                 fixedSize: Size(
                     MediaQuery.of(context).size.width * 0.92, // width
                     57 // height
-                    ),
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -127,10 +178,10 @@ class _PassingScreenState extends State<PassingScreen> {
                     fontWeight: FontWeight.w700,
                     fontFamily: "Poppins"),
               ),
-            ), //
+            ),
           ],
         ),
-      ),
+      ), //
     );
   }
 }

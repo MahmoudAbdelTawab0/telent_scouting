@@ -1,13 +1,19 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:telent_scouting/models/skills_model.dart';
+import 'package:telent_scouting/repo/skill_repo.dart';
 import 'package:telent_scouting/screens/login_screen.dart';
 import 'package:video_player/video_player.dart';
 
 class DribblingScreen extends StatefulWidget {
-  const DribblingScreen({super.key});
+  final String skillName;
+  const DribblingScreen({super.key, required this.skillName});
 
   @override
   State<DribblingScreen> createState() => _DribblingScreenState();
@@ -16,10 +22,10 @@ class DribblingScreen extends StatefulWidget {
 class _DribblingScreenState extends State<DribblingScreen> {
   File? _video;
   bool pause = false;
-
+  late FlickManager flickManager;
   late VideoPlayerController _videoPlayerController;
-
   final picker = ImagePicker();
+
 
   _pickVideo() async {
     final video = await picker.pickVideo(source: ImageSource.gallery);
@@ -35,18 +41,30 @@ class _DribblingScreenState extends State<DribblingScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    flickManager = FlickManager(
+        videoPlayerController: VideoPlayerController.networkUrl(
+            Uri.parse("https://footballscout.pythonanywhere.com/media/videos/Dribbling.mp4")
+        )
+    );
+
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Dribbling",
-          style: TextStyle(
+        title: Text(
+          widget.skillName,
+          style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w400,
               fontSize: 30,
-              fontFamily: "Poppins"),
+              fontFamily: "Kanit"),
         ),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: Colors.green.shade400,
         leading: GestureDetector(
           onTap: () => Navigator.of(context).pop(),
           child: const Icon(
@@ -56,35 +74,64 @@ class _DribblingScreenState extends State<DribblingScreen> {
           ),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
+      body: Container(
+        margin: const EdgeInsets.all(8),
+        height: MediaQuery.of(context).size.height ,
+        width: MediaQuery.of(context).size.width,
+        child: ListView(
           children: [
-            _video != null
-                ? _videoPlayerController.value.isInitialized
-                    ? AspectRatio(
-                        aspectRatio: 1.2,
-                        child: SizedBox(
-                          height: 300,
-                          width: 400,
-                          child: VideoPlayer(_videoPlayerController),
-                        ),
-                      )
-                    : Container()
-                : Image.asset(
-                    "assets/images/img_1.png",
-                    height: 300,
-                    fit: BoxFit.fill,
-                  ),
+        Column(
+        children: [
+        Container(
+
+        child: FlickVideoPlayer(flickManager: flickManager)
+      ),
+      SizedBox(height: 20,),
+      Text(
+        "Dribbling",
+        style: const TextStyle(
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Text(
+          "dribbling is maneuvering a ball by one player while moving in a given direction, avoiding defenders' attempts to intercept the ball",
+          style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF78787c),
+              fontSize: 16),
+          maxLines: 7,
+          textAlign: TextAlign.left,
+        ),
+      ),
+      ],
+    ),
+
+
+
+
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: Image.asset(
+                "assets/images/img_3-removebg-preview.png",
+                fit: BoxFit.fill,
+              ),
+            ),
+            SizedBox(height: 60,),
             ElevatedButton(
               onPressed: () {
                 if (FirebaseAuth.instance.currentUser == null) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
+                    SnackBar(
                       content: Text(
                         "Please login first and try again",
                         style: TextStyle(
@@ -93,15 +140,15 @@ class _DribblingScreenState extends State<DribblingScreen> {
                             fontWeight: FontWeight.w700,
                             fontFamily: "Poppins"),
                       ),
-                      backgroundColor: Colors.lightGreen,
+                      backgroundColor: Colors.green.shade400,
                     ),
                   );
                   Future.delayed(
                     const Duration(seconds: 1),
-                    () => Navigator.pushReplacement(
+                        () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Login(),
+                        builder: (context) => const LoginScreen(),
                       ),
                     ),
                   );
@@ -110,11 +157,11 @@ class _DribblingScreenState extends State<DribblingScreen> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightGreen,
+                backgroundColor: Colors.green.shade400,
                 fixedSize: Size(
                     MediaQuery.of(context).size.width * 0.92, // width
                     57 // height
-                    ),
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -127,10 +174,10 @@ class _DribblingScreenState extends State<DribblingScreen> {
                     fontWeight: FontWeight.w700,
                     fontFamily: "Poppins"),
               ),
-            ), //
+            ),
           ],
         ),
-      ),
+      ), //
     );
   }
 }

@@ -42,7 +42,15 @@ dependencies:
   page_transition: ^2.1.0
   video_player: ^2.8.6
   image_picker: 1.0.8
-flutter_zoom_drawer: ^3.2.0
+  youtube_player_flutter: ^9.0.1
+
+  dio: ^5.4.3+1
+  flutter_bloc: ^8.1.5
+  shimmer: ^3.0.0
+  flick_video_player: ^0.8.0
+  flutter_zoom_drawer: ^3.2.0
+  cloud_firestore: ^4.17.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -82,14 +90,14 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Roboto
+    - family: AbrilFatface
       fonts:
-        - asset: assets/fonts/Roboto-Bold.ttf
+        - asset: assets/fonts/AbrilFatface-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-    - family: Poppins
+    - family: Kanit
       fonts:
-        - asset: assets/fonts/Poppins-Light.ttf
+        - asset: assets/fonts/Kanit-BlackItalic.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

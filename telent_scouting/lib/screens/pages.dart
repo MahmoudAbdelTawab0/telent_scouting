@@ -23,7 +23,7 @@ class _PagesState extends State<Pages> {
         backgroundColor: Colors.white,
         currentIndex: selectedPage,
         unselectedItemColor: Colors.black54,
-        selectedItemColor: Colors.lightGreen,
+        selectedItemColor: Color(0xFF69A03A),
         showUnselectedLabels: true,
         selectedFontSize: 16,
         selectedIconTheme: const IconThemeData(size: 32),
