@@ -15,7 +15,7 @@ class SkillsCubit extends Cubit<SkillsState> {
      try {
 
        emit(SkillsLoading());
-       skillRepo = (await SkillRepo().getSkill()) as Response;
+     //  skillRepo = (await SkillRepo().getSkill()) as Response;
 final skillData = Skils.fromJson(skillRepo.data);
        emit(SkillsDataSuccessed(skillData:skillData));
      }  catch (e) {

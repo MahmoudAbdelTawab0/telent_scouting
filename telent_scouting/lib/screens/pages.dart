@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:telent_scouting/screens/home_screen.dart';
 import 'package:telent_scouting/screens/profile.dart';
+import 'package:telent_scouting/screens/register_screen.dart';
+import 'package:telent_scouting/screens/result_screen.dart';
 class Pages extends StatefulWidget {
   const Pages({super.key});
 
@@ -11,8 +13,7 @@ class Pages extends StatefulWidget {
 class _PagesState extends State<Pages> {
   int selectedPage = 1;
   List<Widget> pages = const [
-
-    Text("data2"),
+    ResultScreen(),
     HomeScreen(),
     Profile()
   ];

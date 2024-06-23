@@ -21,6 +21,9 @@ Future<void> editField (String field) async {
         appBar: AppBar(
           title: Text("Profile"),
           backgroundColor: Colors.green.shade400,
+          actions: [
+            Icon(Icons.arrow_back)
+          ],
         ),
         body: ListView(
           children: [
@@ -34,7 +37,10 @@ Future<void> editField (String field) async {
             Text(
               currentUser.email!,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey[700]),
+              style: TextStyle(color: Colors.grey[700],
+              fontWeight: FontWeight.bold,
+                fontSize: 20
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(15),
@@ -46,24 +52,23 @@ Future<void> editField (String field) async {
                     color: Colors.grey[600]),
               ),
             ),
-            TextBox(text: "text",
-                sectionName: "sectionName",
+            TextBox(text: "mahmoud",
+                sectionName: "full name",
                 onPressed: () => editField("username")
             ),
-            TextBox(text: "empty bio",
-                sectionName: "name",
+            TextBox(text: "01032947392",
+                sectionName: "phone number",
                 onPressed: () => editField("bio")
             ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Text(
-                "My Posts",
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey[600]),
-              ),
+            TextBox(text: "fayoum",
+                sectionName: "address",
+                onPressed: () => editField("bio")
             ),
+            TextBox(text: "22",
+                sectionName: "age",
+                onPressed: () => editField("bio")
+            ),
+
           ],
         ));
   }

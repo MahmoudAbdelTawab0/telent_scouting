@@ -21,7 +21,10 @@ class TextBox extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(sectionName),
+              Text(sectionName,style: TextStyle(color: Colors.grey[700],
+                  fontWeight: FontWeight.bold,
+              fontSize: 18
+              ),),
               IconButton(onPressed: onPressed,
 
                   icon: Icon(Icons.settings))

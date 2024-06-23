@@ -12,6 +12,7 @@ import 'package:telent_scouting/screens/login_screen.dart';
 import 'package:telent_scouting/screens/on_boarding.dart';
 import 'package:telent_scouting/screens/profile.dart';
 import 'package:telent_scouting/screens/register_screen.dart';
+import 'package:telent_scouting/screens/result_screen.dart';
 import 'package:telent_scouting/screens/skills/dribbling_screen.dart';
 import 'firebase_options.dart';
 
@@ -35,14 +36,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: BlocProvider(
         create: (context) => SkillsCubit(),
-        child://HomeScreen()
-        //Profile()
+        child:ResultScreen()
+        //HomeScreen()
+       // Profile()
         //LoginScreen()
        // OnBoarding()
         //DribblingScreen(skillName: 'Dribbling',)
         // JugglingScreen(skillName: "Juggling",)
-        //EgltyScreen(skillName: 'Eglty',)
-       SplashScreen()
+        //EgltyScreen(skillName: 'Eglty',SplashScreen()
         //RegisterScreen()
         //Pages()
          //const LoginScreen()

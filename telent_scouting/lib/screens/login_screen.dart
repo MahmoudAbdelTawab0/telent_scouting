@@ -186,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                   if (user != null) {
                     _pickVideo();
-                  }else{
+                  }else if(user == null){
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(

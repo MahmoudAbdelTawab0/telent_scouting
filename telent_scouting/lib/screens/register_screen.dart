@@ -58,17 +58,21 @@ final phoneController = TextEditingController();
       userCredential.createUserWithEmailAndPassword(
           email: emailController.text,
           password: passwordController.text);
+
+    }on FirebaseAuthException catch(e){
+     print(e);
+
+    }
+    try{
       await myItem.add({
         "username": fullnameController.text,
         "phonenumber": phoneController.text,
         "email": emailController.text,
         "address":addressController,
       });
-    }on FirebaseAuthException catch(e){
-     print(e);
-
+    }catch(e){
+      print(e);
     }
-
 
   }
 
