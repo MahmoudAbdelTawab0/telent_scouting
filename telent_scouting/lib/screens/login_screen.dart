@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:telent_scouting/Screens/home_screen.dart';
+import 'package:telent_scouting/Screens/pages.dart';
 import 'package:telent_scouting/screens/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:video_player/video_player.dart';
@@ -185,7 +186,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     print(e);
                   }
                   if (user != null) {
-                    _pickVideo();
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Pages()));
+
                   }else if(user == null){
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

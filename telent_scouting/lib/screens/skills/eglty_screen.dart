@@ -126,32 +126,8 @@ class _EgltyScreenState extends State<EgltyScreen> {
             SizedBox(height: 60,),
             ElevatedButton(
               onPressed: () {
-                if (FirebaseAuth.instance.currentUser == null) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                     SnackBar(
-                      content: Text(
-                        "Please login first and try again",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "Poppins"),
-                      ),
-                      backgroundColor: Colors.green.shade400,
-                    ),
-                  );
-                  Future.delayed(
-                    const Duration(seconds: 1),
-                        () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
-                      ),
-                    ),
-                  );
-                } else {
                   _pickVideo();
-                }
+
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green.shade400,

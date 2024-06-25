@@ -1,10 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:telent_scouting/models/get_topten_model.dart';
-main () async {
-  final s = GetToptenUserRepo();
-final data = await s.getData();
-data.forEach((element) {print(element.username);});
-}
+
 class GetToptenUserRepo {
   final dio = Dio();
   Future<List<GetToptenUser>> getData() async {

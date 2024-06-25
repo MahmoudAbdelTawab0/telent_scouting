@@ -1,14 +1,13 @@
 import 'dart:io';
 
+
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:telent_scouting/models/skills_model.dart';
-import 'package:telent_scouting/repo/skill_repo.dart';
-import 'package:telent_scouting/screens/login_screen.dart';
+import 'package:path/path.dart';
+import 'package:telent_scouting/repo/upload_videodribbling_repo.dart';
 import 'package:video_player/video_player.dart';
 
 class DribblingScreen extends StatefulWidget {
@@ -25,19 +24,39 @@ class _DribblingScreenState extends State<DribblingScreen> {
   late FlickManager flickManager;
   late VideoPlayerController _videoPlayerController;
   final picker = ImagePicker();
+  final _auth =  FirebaseAuth.instance.currentUser;
 
 
-  _pickVideo() async {
-    final video = await picker.pickVideo(source: ImageSource.gallery);
-    if (video != null) {
-      _video = File(video.path);
 
-      _videoPlayerController = VideoPlayerController.file(_video!)
-        ..initialize().then((_) {
-          setState(() {});
-          _videoPlayerController.play();
-        });
+  Future<void> pickVideo() async {
+    final pickedFile = await picker.pickVideo(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _video = File(pickedFile.path);
+      });
     }
+  }
+  Future<void> uploadVideo() async {
+    if (_video == null) {
+      print('No video selected');
+      return;
+    }
+
+    String fileName = basename(_video!.path);
+    print("$fileName");
+    FormData formData = FormData.fromMap({
+      "username" : _auth!.email!,
+      "source_video" : await MultipartFile.fromFile(_video!.path, filename: fileName),
+    });
+    print("formData: $formData");
+    try {
+      final data =
+      await SkillDribblingVideoRepo().uploadSkillDrbblingVideo(username: _auth.email!, source_video: formData);
+      print("mahmoud:$data");
+    } catch (e) {
+      print("File upload error: $e");
+    }
+
   }
 
   @override
@@ -128,33 +147,13 @@ class _DribblingScreenState extends State<DribblingScreen> {
             ),
             SizedBox(height: 60,),
             ElevatedButton(
-              onPressed: () {
-                if (FirebaseAuth.instance.currentUser == null) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        "Please login first and try again",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "Poppins"),
-                      ),
-                      backgroundColor: Colors.green.shade400,
-                    ),
-                  );
-                  Future.delayed(
-                    const Duration(seconds: 1),
-                        () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
-                      ),
-                    ),
-                  );
-                } else {
-                  _pickVideo();
-                }
+              onPressed: () async{
+                print("before video");
+                await pickVideo();
+                print("before mahmoud video");
+                await uploadVideo();
+                print("after upload video");
+
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green.shade400,

@@ -21,9 +21,7 @@ Future<void> editField (String field) async {
         appBar: AppBar(
           title: Text("Profile"),
           backgroundColor: Colors.green.shade400,
-          actions: [
-            Icon(Icons.arrow_back)
-          ],
+
         ),
         body: ListView(
           children: [
@@ -35,7 +33,7 @@ Future<void> editField (String field) async {
               size: 72,
             ),
             Text(
-              currentUser.email!,
+              currentUser.email != null ? currentUser.email! :"",
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey[700],
               fontWeight: FontWeight.bold,

@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:telent_scouting/Screens/home_screen.dart';
 import 'package:telent_scouting/Screens/pages.dart';
+import 'package:telent_scouting/screens/login_screen.dart';
 import 'package:telent_scouting/screens/pageview_onboarding.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -14,7 +16,7 @@ class OnBoarding extends StatefulWidget {
 
 class _OnBoardingState extends State<OnBoarding> {
   final PageController _controller = PageController();
-
+final _athu = FirebaseAuth.instance.currentUser;
   int pageNum = 0;
 
   @override
@@ -76,12 +78,14 @@ class _OnBoardingState extends State<OnBoarding> {
               right: 32,
               child: InkWell(
                 onTap: (){
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Pages(),
-                    ),
-                  );
+
+    if (_athu == null){
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const LoginScreen()));
+    }else{
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const Pages()));
+    }
                 },
                 child: Text(
                   "Skip",
@@ -101,9 +105,11 @@ class _OnBoardingState extends State<OnBoarding> {
                     borderRadius: BorderRadius.circular(8.0)),
                 child: InkWell(
                   onTap: () {
-                    if (pageNum == 2) {
+                    if (pageNum == 2 && _athu != null) {
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Pages()));
                     }
+                    if ( pageNum == 2 && _athu == null)
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                     _controller.nextPage(
                         duration: const Duration(
                           milliseconds: 200,

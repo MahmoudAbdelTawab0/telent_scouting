@@ -36,7 +36,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: BlocProvider(
         create: (context) => SkillsCubit(),
-        child:ResultScreen()
+        child:SplashScreen()
+        //ResultScreen()
         //HomeScreen()
        // Profile()
         //LoginScreen()

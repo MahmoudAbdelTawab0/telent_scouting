@@ -2,10 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:telent_scouting/models/skills_model.dart';
 
 //List<String> skillName =["Passing","Eglty"];
-main() {
-  final skill = SkillRepo();
-  skill.uploadSkillsData(username: "fghytdcd",juggling_score: 6,speed_score: 8,agility_score: 9);
-}
+
 
 class SkillRepo {
   final dio = Dio();
